@@ -1,0 +1,134 @@
+<template>
+  <div class="ma-content-block lg:flex justify-between p-4">
+    <!-- CRUD 组件 -->
+    <ma-crud :options="options" :columns="columns" ref="crudRef">
+    </ma-crud>
+  </div>
+</template>
+<script setup>
+import { ref, reactive } from 'vue'
+import avenueArticleCategory from '@/api/avenue/avenueArticleCategory'
+import { Message } from '@arco-design/web-vue'
+import tool from '@/utils/tool'
+import * as common from '@/utils/common'
+
+const crudRef = ref()
+
+
+
+
+const options = reactive({
+  id: 'avenue_article_category',
+  rowSelection: {
+    showCheckedAll: true
+  },
+  pk: 'id',
+  operationColumn: true,
+  operationColumnWidth: 160,
+  formOption: {
+    viewType: 'modal',
+    width: 600
+  },
+  api: avenueArticleCategory.getList,
+  params: {p_id: 0},
+  add: {
+    show: true,
+    api: avenueArticleCategory.save,
+    auth: ['avenue:articleCategory:save']
+  },
+  edit: {
+    show: true,
+    api: avenueArticleCategory.update,
+    auth: ['avenue:articleCategory:update']
+  },
+  delete: {
+    show: true,
+    api: avenueArticleCategory.deletes,
+    auth: ['avenue:articleCategory:delete']
+  }
+})
+
+const columns = reactive([
+  {
+    title: "ID",
+    dataIndex: "id",
+    formType: "input",
+    addDisplay: false,
+    editDisplay: false,
+    commonRules: {
+      required: true,
+      message: "请输入ID"
+    }
+  },
+  {
+    title: "分类名称",
+    dataIndex: "title",
+    formType: "input",
+    search: true,
+    commonRules: {
+      required: true,
+      message: "请输入分类名称"
+    }
+  },
+  {
+    title: "上级分类",
+    dataIndex: "p_id",
+    formType: "select",
+    search: false,
+    hide: true,
+    addDefaultValue: '',
+    dict: {url: 'avenue/articleCategory/index?p_id=0&is_all=1', props: { label: 'title', value: 'id'}},
+    commonRules: {
+      required: false,
+      message: "请选择上级分类，不填默认最上级"
+    },
+    editDefaultValue: (record) => {
+      return record.p_id == 0 ? undefined : record.p_id
+    }
+  },
+  {
+    title: "排序",
+    dataIndex: "sort",
+    formType: "input",
+    commonRules: {
+      required: true,
+      message: "请输入排序"
+    }
+  },
+  {
+    title: "创建时间",
+    dataIndex: "created_at",
+    formType: "date",
+    addDisplay: false,
+    editDisplay: false,
+    commonRules: {
+      required: true,
+      message: "请输入创建时间"
+    },
+    showTime: true
+  },
+  {
+    title: "更新时间",
+    dataIndex: "updated_at",
+    formType: "date",
+    addDisplay: false,
+    editDisplay: false,
+    hide: true,
+    commonRules: {
+      required: true,
+      message: "请输入更新时间"
+    },
+    showTime: true
+  },
+  {
+    title: "删除时间",
+    dataIndex: "deleted_at",
+    formType: "date",
+    addDisplay: false,
+    editDisplay: false,
+    hide: true,
+    showTime: true
+  }
+])
+</script>
+<script> export default { name: 'avenue:articleCategory' } </script>
