@@ -30,7 +30,6 @@ const options = reactive({
     width: 600
   },
   api: avenueArticleCategory.getList,
-  params: {p_id: 0},
   add: {
     show: true,
     api: avenueArticleCategory.save,
@@ -71,25 +70,9 @@ const columns = reactive([
     }
   },
   {
-    title: "上级分类",
-    dataIndex: "p_id",
-    formType: "select",
-    search: false,
-    hide: true,
-    addDefaultValue: '',
-    dict: {url: 'avenue/articleCategory/index?p_id=0&is_all=1', props: { label: 'title', value: 'id'}},
-    commonRules: {
-      required: false,
-      message: "请选择上级分类，不填默认最上级"
-    },
-    editDefaultValue: (record) => {
-      return record.p_id == 0 ? undefined : record.p_id
-    }
-  },
-  {
     title: "排序",
     dataIndex: "sort",
-    formType: "input",
+    formType: "input-number",
     commonRules: {
       required: true,
       message: "请输入排序"

@@ -73,7 +73,6 @@ const columns = reactive([
     title: "排序",
     dataIndex: "sort",
     formType: "input",
-    search: true,
     commonRules: {
       required: true,
       message: "请输入排序"

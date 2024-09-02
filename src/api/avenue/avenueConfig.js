@@ -1,13 +1,13 @@
 import { request } from '@/utils/request.js'
 
 /**
- * 配置表 API JS
+ * 配置管理 API JS
  */
 
 export default {
 
   /**
-   * 获取配置表分页列表
+   * 获取配置管理分页列表
    * @returns
    */
   getList (params = {}) {
@@ -19,18 +19,7 @@ export default {
   },
 
   /**
-   * 读取配置表
-   * @returns
-   */
-  read (id) {
-    return request({
-      url: 'avenue/config/read/' + id,
-      method: 'get'
-    })
-  },
-
-  /**
-   * 更新配置表数据
+   * 更新配置管理数据
    * @returns
    */
   update (id, data = {}) {
@@ -40,4 +29,17 @@ export default {
       data
     })
   },
+
+  /**
+   * 读取配置管理
+   * @returns
+   */
+  read (id) {
+    return request({
+      url: 'avenue/config/read/' + id,
+      method: 'get'
+    })
+  },
+
+
 }

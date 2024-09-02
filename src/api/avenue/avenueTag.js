@@ -12,7 +12,7 @@ export default {
    */
   getList (params = {}) {
     return request({
-      url: 'avenue/productTag/index',
+      url: 'avenue/tag/index',
       method: 'get',
       params
     })
@@ -24,7 +24,7 @@ export default {
    */
   deletes (data) {
     return request({
-      url: 'avenue/productTag/delete',
+      url: 'avenue/tag/delete',
       method: 'delete',
       data
     })
@@ -36,7 +36,7 @@ export default {
    */
   read (id) {
     return request({
-      url: 'avenue/productTag/read/' + id,
+      url: 'avenue/tag/read/' + id,
       method: 'get'
     })
   },
@@ -47,7 +47,7 @@ export default {
    */
   update (id, data = {}) {
     return request({
-      url: 'avenue/productTag/update/' + id,
+      url: 'avenue/tag/update/' + id,
       method: 'put',
       data
     })
@@ -59,7 +59,7 @@ export default {
    */
   save (data = {}) {
     return request({
-      url: 'avenue/productTag/save',
+      url: 'avenue/tag/save',
       method: 'post',
       data
     })

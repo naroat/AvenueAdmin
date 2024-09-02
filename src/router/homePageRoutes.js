@@ -27,12 +27,13 @@ const homePageRoutes = [
       type: 'M',
     },
     component: () => import('@/views/userCenter/message.vue'),
-  }, {
-    name: 'store',
-    path: '/store',
-    component: () => import('@/views/appStore/index.vue'),
-    meta: { title: '应用市场', hidden: true }
   },
+  //  {
+  //   name: 'store',
+  //   path: '/store',
+  //   component: () => import('@/views/appStore/index.vue'),
+  //   meta: { title: '应用市场', hidden: true }
+  // },
 ]
 
 export const homePage = {

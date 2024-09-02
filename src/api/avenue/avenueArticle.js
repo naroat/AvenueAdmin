@@ -19,18 +19,6 @@ export default {
   },
 
   /**
-   * 更新文章管理数据
-   * @returns
-   */
-  update (id, data = {}) {
-    return request({
-      url: 'avenue/article/update/' + id,
-      method: 'put',
-      data
-    })
-  },
-
-  /**
    * 添加文章管理
    * @returns
    */
@@ -38,6 +26,18 @@ export default {
     return request({
       url: 'avenue/article/save',
       method: 'post',
+      data
+    })
+  },
+
+  /**
+   * 更新文章管理数据
+   * @returns
+   */
+  update (id, data = {}) {
+    return request({
+      url: 'avenue/article/update/' + id,
+      method: 'put',
       data
     })
   },

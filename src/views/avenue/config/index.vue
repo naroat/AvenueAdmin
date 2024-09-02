@@ -14,7 +14,6 @@ import * as common from '@/utils/common'
 
 const crudRef = ref()
 
-const tagName = ref()
 
 
 
@@ -27,11 +26,8 @@ const options = reactive({
   operationColumn: true,
   operationColumnWidth: 160,
   formOption: {
-    viewType: 'tag',
-    width: 600,
-    tagId: 'avenueConfig',
-    tagName: '配置',
-    titleDataIndex: 'desc'
+    viewType: 'modal',
+    width: 700
   },
   api: avenueConfig.getList,
   edit: {
@@ -43,14 +39,14 @@ const options = reactive({
 
 const columns = reactive([
   {
-    title: "",
+    title: "ID",
     dataIndex: "id",
     formType: "input",
     addDisplay: false,
     editDisplay: false,
     commonRules: {
       required: true,
-      message: "请输入"
+      message: "请输入ID"
     }
   },
   {
@@ -58,13 +54,9 @@ const columns = reactive([
     dataIndex: "code",
     formType: "input",
     search: true,
-    addDisplay: false,
+    addDisplay: true,
     editDisplay: true,
-    readonly: true,
-    commonRules: {
-      required: false,
-      message: "请输入配置编码"
-    }
+    disabled: true,
   },
   {
     title: "说明",
@@ -72,13 +64,22 @@ const columns = reactive([
     formType: "input",
     search: true,
     addDisplay: false,
-    readonly: true,
-    editDisplay: true,
     commonRules: {
-      required: false,
+      required: true,
       message: "请输入说明"
     }
   },
+  // {
+  //   title: "配置管理是否显示：0否1是",
+  //   dataIndex: "is_show",
+  //   formType: "select",
+  //   search: true,
+  //   addDisplay: false,
+  //   commonRules: {
+  //     required: true,
+  //     message: "请输入配置管理是否显示：0否1是"
+  //   }
+  // },
   {
     title: "配置值",
     dataIndex: "value",
@@ -89,19 +90,18 @@ const columns = reactive([
       message: "请输入配置值"
     }
   },
-  {
-    title: "创建时间",
-    dataIndex: "created_at",
-    formType: "date",
-    addDisplay: false,
-    editDisplay: false,
-    hide: true,
-    commonRules: {
-      required: true,
-      message: "请输入创建时间"
-    },
-    showTime: true
-  },
+  // {
+  //   title: "创建时间",
+  //   dataIndex: "created_at",
+  //   formType: "date",
+  //   addDisplay: false,
+  //   editDisplay: false,
+  //   commonRules: {
+  //     required: true,
+  //     message: "请输入创建时间"
+  //   },
+  //   showTime: true
+  // },
   {
     title: "更新时间",
     dataIndex: "updated_at",

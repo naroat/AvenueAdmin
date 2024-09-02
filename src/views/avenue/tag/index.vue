@@ -2,12 +2,19 @@
   <div class="ma-content-block lg:flex justify-between p-4">
     <!-- CRUD 组件 -->
     <ma-crud :options="options" :columns="columns" ref="crudRef">
+      <template #textcolor="{ record }">
+        <a-tag :color="record.textcolor">{{ record.textcolor }}</a-tag>
+      </template>
+
+      <template #color="{ record }">
+        <a-tag :color="record.color">{{ record.color }}</a-tag>
+      </template>
     </ma-crud>
   </div>
 </template>
 <script setup>
 import { ref, reactive } from 'vue'
-import avenueSearchCategory from '@/api/avenue/avenueSearchCategory'
+import avenueTag from '@/api/avenue/avenueTag'
 import { Message } from '@arco-design/web-vue'
 import tool from '@/utils/tool'
 import * as common from '@/utils/common'
@@ -15,21 +22,8 @@ import * as common from '@/utils/common'
 const crudRef = ref()
 
 
-const numberOperation = (newValue, id, numberName) => {
-  avenueSearchCategory.numberOperation({ id, numberName, numberValue: newValue }).then( res => {
-    res.success && Message.success(res.message)
-  }).catch( e => { console.log(e) } )
-}
-
-const switchStatus = (statusValue, id, statusName) => {
-  avenueSearchCategory.changeStatus({ id, statusName, statusValue }).then( res => {
-    res.success && Message.success(res.message)
-  }).catch( e => { console.log(e) } )
-}
-
-
 const options = reactive({
-  id: 'avenue_search_category',
+  id: 'avenue_tag',
   rowSelection: {
     showCheckedAll: true
   },
@@ -40,40 +34,21 @@ const options = reactive({
     viewType: 'modal',
     width: 600
   },
-  api: avenueSearchCategory.getList,
-  // recycleApi: avenueSearchCategory.getRecycleList,
+  api: avenueTag.getList,
   add: {
     show: true,
-    api: avenueSearchCategory.save,
-    auth: ['avenue:searchCategory:save']
+    api: avenueTag.save,
+    auth: ['avenue:tag:save']
   },
   edit: {
     show: true,
-    api: avenueSearchCategory.update,
-    auth: ['avenue:searchCategory:update']
+    api: avenueTag.update,
+    auth: ['avenue:tag:update']
   },
   delete: {
     show: true,
-    api: avenueSearchCategory.deletes,
-    auth: ['avenue:searchCategory:delete'],
-    realApi: avenueSearchCategory.realDeletes,
-    realAuth: ['avenue:searchCategory:realDeletes']
-  },
-  recovery: {
-    show: true,
-    api: avenueSearchCategory.recoverys,
-    auth: ['avenue:searchCategory:recovery']
-  },
-  import: {
-    show: false,
-    url: 'avenue/searchCategory/import',
-    templateUrl: 'avenue/searchCategory/downloadTemplate',
-    auth: ['avenue:searchCategory:import']
-  },
-  export: {
-    show: false,
-    url: 'avenue/searchCategory/export',
-    auth: ['avenue:searchCategory:export']
+    api: avenueTag.deletes,
+    auth: ['avenue:tag:delete']
   }
 })
 
@@ -84,30 +59,58 @@ const columns = reactive([
     formType: "input",
     addDisplay: false,
     editDisplay: false,
-    hide: false,
     commonRules: {
       required: true,
-      message: "请输入"
+      message: "请输入ID"
     }
   },
   {
-    title: "分类名称",
+    title: "名称",
     dataIndex: "title",
     formType: "input",
     search: true,
     commonRules: {
       required: true,
-      message: "请输入分类名称"
+      message: "请输入名称"
+    }
+  },
+  {
+    title: "文本颜色",
+    dataIndex: "textcolor",
+    formType: "color-picker",
+    commonRules: {
+      required: true,
+      message: "请选择文本颜色"
+    }
+  },
+  {
+    title: "背景颜色",
+    dataIndex: "color",
+    formType: "color-picker",
+    dict: {tagColor: true, translation: true},
+    commonRules: {
+      required: true,
+      message: "请选择背景颜色"
     }
   },
   {
     title: "排序",
     dataIndex: "sort",
-    formType: "input",
-    search: true,
+    formType: "input-number",
     commonRules: {
       required: true,
       message: "请输入排序"
+    }
+  },
+  {
+    title: "标签类型",
+    dataIndex: "type",
+    formType: "select",
+    search: true,
+    dict: {data: [{label: '产品', value: '0'}, {label: '文章', value: '1'}], translation: true},
+    commonRules: {
+      required: true,
+      message: "请选择标签类型"
     }
   },
   {
@@ -116,7 +119,6 @@ const columns = reactive([
     formType: "date",
     addDisplay: false,
     editDisplay: false,
-    hide: false,
     commonRules: {
       required: true,
       message: "请输入创建时间"
@@ -147,4 +149,4 @@ const columns = reactive([
   }
 ])
 </script>
-<script> export default { name: 'avenue:searchCategory' } </script>
+<script> export default { name: 'avenue:tag' } </script>

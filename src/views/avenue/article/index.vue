@@ -26,8 +26,11 @@ const options = reactive({
   operationColumn: true,
   operationColumnWidth: 160,
   formOption: {
-    viewType: 'modal',
-    width: 600
+    viewType: 'tag',
+    width: 600,
+    tagId: 'article',
+    tagName: '文章',
+    titleDataIndex: 'title'
   },
   api: avenueArticle.getList,
   add: {
@@ -73,7 +76,6 @@ const columns = reactive([
     title: "描述",
     dataIndex: "desc",
     formType: "input",
-    search: false,
     commonRules: {
       required: true,
       message: "请输入描述"
@@ -94,13 +96,10 @@ const columns = reactive([
     dataIndex: "cate_id",
     formType: "select",
     search: true,
-    dict: {url: 'avenue/articleCategory/index', props: { label: 'title', value: 'id'}},
+    dict: {url: 'avenue/articleCategory/index', params: { onlyMenu: true } , props: { label: 'title', value: 'id' }},
     commonRules: {
       required: true,
       message: "请选择分类"
-    },
-    editDefaultValue: (record) => {
-      return record.p_id == 0 ? undefined : record.p_id
     }
   },
   {
@@ -132,7 +131,6 @@ const columns = reactive([
     formType: "date",
     addDisplay: false,
     editDisplay: false,
-    hide: true,
     commonRules: {
       required: true,
       message: "请输入更新时间"

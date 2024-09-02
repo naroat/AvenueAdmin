@@ -19,25 +19,14 @@ export default {
   },
 
   /**
-   * 将产品分类删除，有软删除则移动到回收站
+   * 添加产品分类
    * @returns
    */
-  deletes (data) {
+  save (data = {}) {
     return request({
-      url: 'avenue/productCategory/delete',
-      method: 'delete',
+      url: 'avenue/productCategory/save',
+      method: 'post',
       data
-    })
-  },
-
-  /**
-   * 读取产品分类
-   * @returns
-   */
-  read (id) {
-    return request({
-      url: 'avenue/productCategory/read/' + id,
-      method: 'get'
     })
   },
 
@@ -54,13 +43,24 @@ export default {
   },
 
   /**
-   * 添加产品分类
+   * 读取产品分类
    * @returns
    */
-  save (data = {}) {
+  read (id) {
     return request({
-      url: 'avenue/productCategory/save',
-      method: 'post',
+      url: 'avenue/productCategory/read/' + id,
+      method: 'get'
+    })
+  },
+
+  /**
+   * 将产品分类删除，有软删除则移动到回收站
+   * @returns
+   */
+  deletes (data) {
+    return request({
+      url: 'avenue/productCategory/delete',
+      method: 'delete',
       data
     })
   },

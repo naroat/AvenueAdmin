@@ -9,21 +9,22 @@
 -->
 <template>
 
-  <st-welcome />
+  <!-- <st-welcome />
   <st-count />
-  <st-login-chart />
-
+  <st-login-chart /> -->
+  仪表盘
   <div class="block lg:flex">
-    <st-announced />
-    <st-mineadmin />
+    <!-- <st-announced />
+    <st-mineadmin /> -->
   </div>
 </template>
 
 <script setup>
-  import StCount from './components/st-count.vue'
-  import StWelcome from './components/st-welcome.vue'
-  import StLoginChart from './components/st-loginChart.vue'
-  import StMineadmin from './components/st-mineadmin.vue'
-  import StAnnounced from './components/st-announced.vue'
+  // import StCount from './components/st-count.vue'
+  // import StWelcome from './components/st-welcome.vue'
+  // import StLoginChart from './components/st-loginChart.vue'
+  // import StMineadmin from './components/st-mineadmin.vue'
+  // import StAnnounced from './components/st-announced.vue'
+  
 </script>
 

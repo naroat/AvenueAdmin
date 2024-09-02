@@ -2,12 +2,6 @@
   <div class="ma-content-block lg:flex justify-between p-4">
     <!-- CRUD 组件 -->
     <ma-crud :options="options" :columns="columns" ref="crudRef">
-      <!-- logo列 -->
-      <template #logo="{ record }">
-        <a-avatar>
-          <img :src="record.logo ? record.logo : $url + 'avatar.jpg'" style="object-fit: cover" />
-        </a-avatar>
-      </template>
     </ma-crud>
   </div>
 </template>
@@ -60,7 +54,6 @@ const columns = reactive([
     formType: "input",
     addDisplay: false,
     editDisplay: false,
-    hide: false,
     commonRules: {
       required: true,
       message: "请输入ID"
@@ -76,11 +69,15 @@ const columns = reactive([
       message: "请输入名称"
     }
   },
-  // {
-  //   title: "描述",
-  //   dataIndex: "desc",
-  //   formType: "input",
-  // },
+  {
+    title: "描述",
+    dataIndex: "desc",
+    formType: "textarea",
+    commonRules: {
+      required: true,
+      message: "请输入描述"
+    }
+  },
   {
     title: "logo",
     dataIndex: "logo",
@@ -94,7 +91,6 @@ const columns = reactive([
     title: "链接",
     dataIndex: "link",
     formType: "input",
-    hide: false,
     commonRules: {
       required: true,
       message: "请输入链接"
@@ -105,10 +101,10 @@ const columns = reactive([
     dataIndex: "cate_id",
     formType: "select",
     search: true,
-    dict: {translation: true, url: 'avenue/productCategory/index?is_all=1', props: { label: 'title', value: 'id' } },
+    dict: {url: 'avenue/productCategory/index', params: { onlyMenu: true } , props: { label: 'title', value: 'id' }, translation: true},
     commonRules: {
       required: true,
-      message: "请选择分类"
+      message: "请选择分类id"
     }
   },
   {
@@ -116,8 +112,8 @@ const columns = reactive([
     dataIndex: "tags",
     formType: "select",
     search: true,
-    multiple:true,
-    dict: {translation: true, url: 'avenue/productTag/index?is_all=1', props: { label: 'title', value: 'id' } },
+    multiple: true,
+    dict: {url: 'avenue/tag/index', params: { onlyMenu: true, type: 0 } , props: { label: 'title', value: 'id' }, translation: true},
     commonRules: {
       required: true,
       message: "请选择标签"
@@ -133,12 +129,22 @@ const columns = reactive([
     }
   },
   {
+    title: "点击数",
+    dataIndex: "click",
+    formType: "input",
+    addDisplay: false,
+    editDisplay: false,
+    commonRules: {
+      required: true,
+      message: "请输入点击数"
+    }
+  },
+  {
     title: "创建时间",
     dataIndex: "created_at",
     formType: "date",
     addDisplay: false,
     editDisplay: false,
-    hide: false,
     commonRules: {
       required: true,
       message: "请输入创建时间"
@@ -151,7 +157,6 @@ const columns = reactive([
     formType: "date",
     addDisplay: false,
     editDisplay: false,
-    hide: true,
     commonRules: {
       required: true,
       message: "请输入更新时间"
