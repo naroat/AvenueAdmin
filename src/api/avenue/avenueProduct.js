@@ -65,5 +65,16 @@ export default {
     })
   },
 
+  /**
+   * 获取产品logo等信息
+   * @returns
+   */
+  fetchProduct (data) {
+    return request({
+      url: 'avenue/product/fetchProduct',
+      method: 'post',
+      data
+    })
+  },
 
 }

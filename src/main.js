@@ -53,9 +53,8 @@ window.Request = request
 
 app.mount('#app')
 
-tool.capsule('MineAdmin', `v${packageJson.version} release`)
-console.log('MineAdmin 官网  https://www.mineadmin.com')
-console.log('MineAdmin 文档  https://doc.mineadmin.com')
-console.log('MineAdmin Github https://github.com/kanyxmo/MineAdmin')
-console.log('MineAdmin-Vue Github https://github.com/kanyxmo/MineAdmin-Vue')
+tool.capsule('Avenue', `v${packageJson.version} release`, 'warning')
+console.log('Avenue后台管理系统基于MineAdmin: https://www.mineadmin.com');
+console.log('Avenue 官网  https://www.avenue.wang/')
+console.log('Avenue Github https://github.com/naroat/Avenue')
 console.log('请不要吝啬您的 star，谢谢 ~ 🤩🤩🤩')

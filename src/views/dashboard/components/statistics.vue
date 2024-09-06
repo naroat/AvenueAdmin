@@ -12,8 +12,9 @@
   <!-- <st-welcome />
   <st-count />
   <st-login-chart /> -->
-  仪表盘
+  欢迎使用！
   <div class="block lg:flex">
+    
     <!-- <st-announced />
     <st-mineadmin /> -->
   </div>

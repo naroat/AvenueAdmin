@@ -2,12 +2,12 @@
   <div class="ma-content-block lg:flex justify-between p-4">
     <!-- CRUD 组件 -->
     <ma-crud :options="options" :columns="columns" ref="crudRef">
-      <template #textcolor="{ record }">
+      <!-- <template #textcolor="{ record }">
         <a-tag :color="record.textcolor">{{ record.textcolor }}</a-tag>
-      </template>
+      </template> -->
 
-      <template #color="{ record }">
-        <a-tag :color="record.color">{{ record.color }}</a-tag>
+      <template #title="{ record }">
+        <a-tag :color="record.color" :style="'color:' + record.textcolor + ';'">{{ record.title }}</a-tag>
       </template>
     </ma-crud>
   </div>
@@ -59,13 +59,14 @@ const columns = reactive([
     formType: "input",
     addDisplay: false,
     editDisplay: false,
+    width: 20,
     commonRules: {
       required: true,
       message: "请输入ID"
     }
   },
   {
-    title: "名称",
+    title: "标签名",
     dataIndex: "title",
     formType: "input",
     search: true,
@@ -78,6 +79,7 @@ const columns = reactive([
     title: "文本颜色",
     dataIndex: "textcolor",
     formType: "color-picker",
+    hide: true,
     commonRules: {
       required: true,
       message: "请选择文本颜色"
@@ -88,6 +90,7 @@ const columns = reactive([
     dataIndex: "color",
     formType: "color-picker",
     dict: {tagColor: true, translation: true},
+    hide: true,
     commonRules: {
       required: true,
       message: "请选择背景颜色"

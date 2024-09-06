@@ -8,7 +8,11 @@
  - @Link   https://gitee.com/xmo/mineadmin-vue
 -->
 <template>
-  <div>
+  <ma-form-item
+    v-if="(typeof props.component.display == 'undefined' || props.component.display === true)"
+    :component="props.component"
+    :custom-field="props.customField"
+  >
     <slot :name="`form-${props.component.dataIndex}`" v-bind="props.component">
       <a-button
         :type="props.component.type"
@@ -28,12 +32,14 @@
         {{ props.component.title ?? 'button' }}
       </a-button>
     </slot>
-  </div>
+  </ma-form-item>
 </template>
   
 <script setup>
 import { onMounted, inject } from 'vue'
 import { runEvent } from '../js/event.js'
+import MaFormItem from './form-item.vue'
+
 const props = defineProps({
   component: Object,
 })

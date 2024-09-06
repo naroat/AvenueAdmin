@@ -1,7 +1,7 @@
 {
   "name": "avenue-vue",
   "admin_name": "avenue-vue",
-  "version": "2.0LTS",
+  "version": "1.0.0",
   "type": "module",
   "license": "MIT",
   "scripts": {
