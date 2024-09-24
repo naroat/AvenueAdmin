@@ -25,7 +25,9 @@ import * as common from '@/utils/common'
 import { request } from '@/utils/request'
 
 const crudRef = ref()
-
+const requestData = [
+  
+]
 
 //获取产品信息
 const fetchProduct = async (maFormObject) => {
@@ -143,7 +145,9 @@ const columns = reactive([
   {
     title: "logo",
     dataIndex: "logo",
-    formType: "input",
+    formType: "upload",
+    dict: {type: 'image'},
+    requestData:  {onlyUrl: true, path: 'product/logo'},
     commonRules: {
       required: true,
       message: "请输入logo"
